@@ -2,6 +2,23 @@
 
 **Track:** Trust, Identity & AI Infrastructure (Monad Metropolis)
 
+## ⛓️ Live on Monad Testnet (chain ID 10143)
+
+**Gate contract:** [`0xc62158d762345d0ea2d5b442Ea5c04Abf4D54743`](https://testnet.monadexplorer.com/address/0xc62158d762345d0ea2d5b442Ea5c04Abf4D54743)
+([monadscan mirror](https://testnet.monadscan.com/address/0xc62158d762345d0ea2d5b442Ea5c04Abf4D54743))
+— `contracts/AgentSafetyGate.sol`, deployed from this repo.
+
+| Proof | Tx | Result |
+| --- | --- | --- |
+| Deploy gate (cap 1 MON) | [`0x0c9c…14608b`](https://testnet.monadexplorer.com/tx/0x0c9c03a44200c68ad7a0a2009c66530b526d818169eae6ca1a5c8d4ce14608b1) | ✅ mined |
+| Allowlist payee | [`0x9f29…e99b7a`](https://testnet.monadexplorer.com/tx/0x9f29d0780632b5afac08619c751de9899816b20fd5ef052eb38cbb62fe99b7a9) | ✅ mined |
+| In-policy `execute(0)` | [`0xafc1…67441`](https://testnet.monadexplorer.com/tx/0xafc12f6c6564964e2cb3e31589ec2fe69055323a3cc4886eeb05ebeb1af67441) | ✅ `Executed` event |
+| Over-cap `execute(1)` | [`0x3ed8…84313`](https://testnet.monadexplorer.com/tx/0x3ed88b728639d733c3e7602073059b214b1ebb321169114bc579052b63084313) | 🛑 mined revert (`over cap`) |
+| Non-allowlisted `execute(2)` | [`0xb625…05b12`](https://testnet.monadexplorer.com/tx/0xb6251e40d397f9b7f25f94d556d270d5a1e82109bea8dd2766334b96705b1289) | 🛑 mined revert (`not allowlisted`) |
+
+Reproduce: `cast call <GATE> "owner()" --rpc-url https://testnet-rpc.monad.xyz`
+(contract source: [`contracts/AgentSafetyGate.sol`](contracts/AgentSafetyGate.sol))
+
 Monad executes in parallel at 10K TPS with ~300ms blocks. PreTxSim matches
 that posture on the safety side: concurrent pre-flight simulation for
 autonomous agent wallets and skill-based NFTs, one shared revm core, and

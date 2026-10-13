@@ -26,3 +26,8 @@ docs/assets/_frame_template.html
 # Environment files
 .env
 .env.*
+
+# Foundry artifacts (never commit build output, deploy logs, or keys)
+contracts/out/
+contracts/cache/
+deploy_out*.txt

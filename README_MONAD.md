@@ -19,6 +19,9 @@
 Reproduce: `cast call <GATE> "owner()" --rpc-url https://testnet-rpc.monad.xyz`
 (contract source: [`contracts/AgentSafetyGate.sol`](contracts/AgentSafetyGate.sol))
 
+**Video walkthrough (2:14, narrated):** [`docs/assets/demo-monad.mp4`](docs/assets/demo-monad.mp4) —
+problem → live pre-flight run → local-first design → onchain proof, cut to the narration track.
+
 Monad executes in parallel at 10K TPS with ~300ms blocks. PreTxSim matches
 that posture on the safety side: concurrent pre-flight simulation for
 autonomous agent wallets and skill-based NFTs, one shared revm core, and
